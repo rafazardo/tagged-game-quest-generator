@@ -46,7 +46,7 @@ def is_valid_directory(path):
 if __name__ == "__main__":
     # Setting up the parser to accept command line arguments
     parser = argparse.ArgumentParser(description='Download dataset to a specific directory.')
-    parser.add_argument('--path_to_save_dataset', type=str, required=True, help='Destination path to save the dataset')
+    parser.add_argument('--path_outdir_dataset', type=str, required=True, help='Destination path to save the dataset')
 
     # Parsing command line arguments
     args = parser.parse_args()
