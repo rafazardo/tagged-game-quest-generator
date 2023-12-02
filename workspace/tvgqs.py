@@ -10,21 +10,21 @@ import csv
 import re
 
 class TVGQS:
-    def __init__(self, path_indir__dataset, test_size):
+    def __init__(self, path_indir_dataset, test_size):
         """
             This method reads the dataset and splits it into train and test slices
 
             Args:
-                path_to_dataset (str): Path to the dataset csv file.
+                path_indir_dataset (str): Path to the dataset csv file.
                 test_size (float): Percentage of the data destined to test.
 
             Returns:
                 tipo_de_retorno: Descrição do que o método retorna.
         """
 
-        self.path_indir__dataset = path_indir__dataset
+        self.path_indir_dataset = path_indir_dataset
 
-        with open(self.path_indir__dataset, 'r') as arquivo:
+        with open(self.path_indir_dataset, 'r') as arquivo:
             leitor_csv = csv.reader(arquivo)
 
         speeches_txt = []
