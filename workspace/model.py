@@ -16,7 +16,7 @@ class TaggedGameQuestGenerator:
         self.path_test_dataset = None
         self.path_data_collator = None
 
-    def set_training_args(self, path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, path_train_dataset, path_test_dataset, path_data_collator):
+    def set_training_args(self, path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_dataset, test_dataset, data_collator):
         """
         Sets up training arguments for the model.
 
@@ -28,9 +28,9 @@ class TaggedGameQuestGenerator:
             eval_steps (int): Evaluation steps.
             save_steps (int): Save steps during training.
             warmup_steps (int): Warmup steps.
-            path_train_dataset (str): Path to the training dataset.
-            path_test_dataset (str): Path to the testing dataset.
-            path_data_collator (str): Path to the data collator.
+            train_dataset (pointer): Training dataset.
+            test_dataset (pointer): Testing dataset.
+            data_collator (pointer): Data collator.
         """
         self.training_args = TrainingArguments(
             output_dir=path_outdir_trained_model + "/tagged-quest-generator",
@@ -41,16 +41,16 @@ class TaggedGameQuestGenerator:
             save_steps=save_steps,
             warmup_steps=warmup_steps
         )
-        self.path_train_dataset = path_train_dataset
-        self.path_test_dataset = path_test_dataset
-        self.path_data_collator = path_data_collator
+        self.train_dataset = train_dataset
+        self.test_dataset = test_dataset
+        self.data_collator = data_collator
 
         self.trainer = Trainer(
             model=self.model,
             args=self.training_args,
-            data_collator=self.path_data_collator,
-            train_dataset=self.path_train_dataset,
-            eval_dataset=self.path_data_collator,
+            data_collator=self.data_collator,
+            train_dataset=self.train_dataset,
+            eval_dataset=self.data_collator,
         )
 
     def train(self):
