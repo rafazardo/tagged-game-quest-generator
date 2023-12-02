@@ -64,6 +64,13 @@ class TVGQS:
         Return:
             train_TVGQS_dataset, test_TVGQS_dataset, data_collator
         """
+
+        tokenizer.add_special_tokens({'bos_token': '<SOS>'})
+        tokenizer.add_special_tokens({'eos_token': '<EOS>'})
+        tokenizer.add_special_tokens({'additional_special_tokens': ['<SOA>', '<EOA>']})
+        # tokenizer.add_special_tokens({'additional_special_tokens': ['[CHARACTER]', '[ITEM]', '[PLACE]', '[ENEMY]', '[NUMBER]']})
+        tokenizer.add_special_tokens({'additional_special_tokens': ['<CHARACTER>', '<ITEM>', '<PLACE>', '<ENEMY>', '<NUMBER>']})
+
         train_TVGQS_dataset = TextDataset(
             tokenizer=tokenizer,
             file_path=path_indir_train_txt,
