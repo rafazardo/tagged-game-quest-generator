@@ -42,6 +42,7 @@ class TVGQS:
             path_outdir_train_txt (str): Path to create the train file.
         """
         self.build_text_file(self.train, path_outdir_train_txt)
+        return path_outdir_train_txt
 
     def build_test_txt(self, path_outdir_test_txt):
         """
@@ -51,6 +52,7 @@ class TVGQS:
             path_outdir_test_txt (str): Path to create the test file.
         """
         self.build_text_file(self.test, path_outdir_test_txt)
+        return path_outdir_test_txt
 
     def load_dataset(self, path_indir_train_txt, path_indir_test_txt, tokenizer):
         """
