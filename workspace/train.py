@@ -14,7 +14,7 @@ import os
 from model import TaggedGameQuestGenerator
 from tvgqs import TVGQS
 
-def run_train(self, path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, path_indir_dataset, path_outdir_train_dataset, path_outdir_test_dataset, path_outdir_data_collator, test_size):
+def run_train(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, path_indir_dataset, path_outdir_train_dataset, path_outdir_test_dataset, test_size):
     tagged_game_quest_generator = TaggedGameQuestGenerator()
     tvgqs = TVGQS(path_indir_dataset, test_size)
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -26,7 +26,7 @@ def run_train(self, path_outdir_trained_model, num_train_epochs, per_device_trai
 
     path_indir_train_dataset = tvgqs.build_train_txt(path_outdir_train_dataset)
     path_indir_test_dataset = tvgqs.build_test_txt(path_outdir_test_dataset)
-    train_tvgqs_dataset, test_tvgqs_dataset, data_collator = tvgqs.load_dataset(path_indir_train_dataset, path_indir_test_dataset)
+    train_tvgqs_dataset, test_tvgqs_dataset, data_collator = tvgqs.load_dataset(path_indir_train_dataset, path_indir_test_dataset, tokenizer)
 
     tagged_game_quest_generator.set_training_args(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_tvgqs_dataset, test_tvgqs_dataset, data_collator)
     tagged_game_quest_generator.train()
@@ -54,12 +54,11 @@ if __name__ == "__main__":
     parser.add_argument('--per_device_train_batch_size', type=int, default=32, help='Batch size per device during training')
     parser.add_argument('--per_device_eval_batch_size', type=int, default=64, help='Batch size per device during evaluation')
     parser.add_argument('--eval_steps', type=int, default=400, help='Number of evaluation steps')
-    parser.add_argument('--save_steps', type=int, default=800, help='Number of steps to save the model')
+    parser.add_argument('--save_steps', type=int, default=100, help='Number of steps to save the model')
     parser.add_argument('--warmup_steps', type=int, default=500, help='Number of steps to stabilize the learning rate')
     parser.add_argument('--path_indir_dataset', type=str, required=True, help='Destination path to load the dataset')
     parser.add_argument('--path_outdir_train_dataset', type=str, required=True, help='Destination path to save the train dataset')
     parser.add_argument('--path_outdir_test_dataset', type=str, required=True, help='Destination path to save the teste dataset')
-    parser.add_argument('--path_outdir_data_collector', type=str, required=True, help='Destination path to save the data colletor')
     parser.add_argument('--test_size', type=float, default=0.15, help='Percentage of the data destined to test')
 
     # Parsing command line arguments
@@ -74,7 +73,6 @@ if __name__ == "__main__":
     path_indir_dataset = args.path_indir_dataset
     path_train_dataset = args.path_outdir_train_dataset
     path_test_dataset = args.path_outdir_test_dataset
-    path_data_collator = args.path_outdir_data_collector
     test_size = args.test_size
 
     # Checking if the provided path is a valid directory
@@ -84,4 +82,4 @@ if __name__ == "__main__":
         # Constructing the output file path
         output_file = path_outdir_trained_model
 
-    run_train(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, path_train_dataset, path_indir_dataset, path_test_dataset, path_data_collator, test_size)
+    run_train(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, path_indir_dataset, path_train_dataset, path_test_dataset, test_size)

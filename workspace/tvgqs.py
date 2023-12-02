@@ -21,14 +21,15 @@ class TVGQS:
         """
 
         self.path_indir_dataset = path_indir_dataset
+        print(path_indir_dataset)
+
+        speeches_txt = []
 
         with open(self.path_indir_dataset, 'r') as arquivo:
             leitor_csv = csv.reader(arquivo)
 
-        speeches_txt = []
-
-        for linha in leitor_csv:
-            speeches_txt.append(linha[0])
+            for linha in leitor_csv:
+                speeches_txt.append(linha[0])
 
         speeches_txt = ["<SOS>" + speech + "<EOS>" for speech in speeches_txt]
 
@@ -41,8 +42,8 @@ class TVGQS:
         Args:
             path_outdir_train_txt (str): Path to create the train file.
         """
-        self.build_text_file(self.train, path_outdir_train_txt)
-        return path_outdir_train_txt
+        self._build_text_file(self.train, path_outdir_train_txt, "train_dataset.txt")
+        return path_outdir_train_txt + "train_dataset.txt"
 
     def build_test_txt(self, path_outdir_test_txt):
         """
@@ -51,8 +52,8 @@ class TVGQS:
         Args:
             path_outdir_test_txt (str): Path to create the test file.
         """
-        self.build_text_file(self.test, path_outdir_test_txt)
-        return path_outdir_test_txt
+        self._build_text_file(self.test, path_outdir_test_txt, "test_dataset.txt")
+        return path_outdir_test_txt + "test_dataset.txt"
 
     def load_dataset(self, path_indir_train_txt, path_indir_test_txt, tokenizer):
         """
@@ -83,8 +84,8 @@ class TVGQS:
         )
         return train_TVGQS_dataset, test_TVGQS_dataset, data_collator
 
-    def _build_text_file(self, txts, dest_path):
-        with open(dest_path, 'w') as f:
+    def _build_text_file(self, txts, dest_path, file_name):
+        with open(dest_path + file_name, 'w') as f:
             for txt in txts:
                 summary = txt.strip()
                 summary = re.sub(r"\s", " ", summary)
