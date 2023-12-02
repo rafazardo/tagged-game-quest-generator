@@ -10,7 +10,7 @@ import csv
 import re
 
 class TVGQS:
-    def __init__(self, path_to_dataset, test_size):
+    def __init__(self, path_indir__dataset, test_size):
         """
             This method reads the dataset and splits it into train and test slices
 
@@ -22,9 +22,9 @@ class TVGQS:
                 tipo_de_retorno: Descrição do que o método retorna.
         """
 
-        self.path_to_dataset = path_to_dataset
+        self.path_indir__dataset = path_indir__dataset
 
-        with open(self.path_to_dataset, 'r') as arquivo:
+        with open(self.path_indir__dataset, 'r') as arquivo:
             leitor_csv = csv.reader(arquivo)
 
         speeches_txt = []
@@ -36,23 +36,23 @@ class TVGQS:
 
         self.train, self.test = train_test_split(speeches_txt, test_size=test_size)
 
-    def build_train_txt(self, path_to_train_txt):
+    def build_train_txt(self, path_outdir_train_txt):
         """
         This method creates a txt file containing the train data
 
         Args:
-            path_to_train_txt (str): Path to create the train file.
+            path_outdir_train_txt (str): Path to create the train file.
         """
-        self.build_text_file(self.train, path_to_train_txt)
+        self.build_text_file(self.train, path_outdir_train_txt)
 
-    def build_test_txt(self, path_to_test_txt):
+    def build_test_txt(self, path_outdir_test_txt):
         """
         This method creates a txt file containing the test data
 
         Args:
-            path_to_test_txt (str): Path to create the test file.
+            path_outdir_test_txt (str): Path to create the test file.
         """
-        self.build_text_file(self.test, path_to_test_txt)
+        self.build_text_file(self.test, path_outdir_test_txt)
 
     def _build_text_file(self, txts, dest_path):
         with open(dest_path, 'w') as f:
