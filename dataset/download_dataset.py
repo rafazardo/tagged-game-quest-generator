@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     # Parsing command line arguments
     args = parser.parse_args()
-    output_directory = args.path_to_save_dataset
+    output_directory = args.path_outdir_dataset
 
     # Checking if the provided path is a valid directory
     if not is_valid_directory(output_directory):
