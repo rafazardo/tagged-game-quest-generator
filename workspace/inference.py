@@ -1,6 +1,7 @@
 from transformers import pipeline
 import argparse
 import os
+from model import TaggedGameQuestGenerator
 
 def is_valid_directory(path):
     """
@@ -21,11 +22,13 @@ if __name__ == "__main__":
     # Setting up the parser to accept command line arguments
     parser = argparse.ArgumentParser(description='Download dataset to a specific directory.')
     parser.add_argument('--path_outdir_sentences', type=str, required=True, help='Destination path to save the generated sentences')
+    parser.add_argument('--path_indir_trained_model', type=str, required=True, help='Destination get the trained model')
     parser.add_argument('--num_sentences', type=int, required=True, help='Number of sentences to be generated')
 
     # Parsing command line arguments
     args = parser.parse_args()
     output_directory = args.path_outdir_sentences
+    trained_model_path = args.path_indir_trained_model
     num_sentences = args.num_sentences
 
     # Checking if the provided path is a valid directory
@@ -35,7 +38,9 @@ if __name__ == "__main__":
         # Constructing the output file path
         output_file = os.path.join(output_directory, "tvgqs.txt")
 
-    quest_generator = pipeline('text-generation', model='./gpt2-quest-generator', tokenizer='gpt2', max_length=10000, temperature=0.5)
+    model = TaggedGameQuestGenerator()
+
+    quest_generator = model.get_pipeline(trained_model_path)
 
     sentences = []
 
