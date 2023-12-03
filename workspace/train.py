@@ -28,7 +28,7 @@ def run_train(path_outdir_trained_model, num_train_epochs, per_device_train_batc
     path_indir_test_dataset = tvgqs.build_test_txt(path_outdir_test_dataset)
     train_tvgqs_dataset, test_tvgqs_dataset, data_collator = tvgqs.load_dataset(path_indir_train_dataset, path_indir_test_dataset, tokenizer)
 
-    tagged_game_quest_generator.set_training_args(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_tvgqs_dataset, test_tvgqs_dataset, data_collator)
+    tagged_game_quest_generator.set_training_args(path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_tvgqs_dataset, test_tvgqs_dataset, data_collator, tokenizer)
     tagged_game_quest_generator.train()
 
 

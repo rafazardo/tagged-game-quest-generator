@@ -16,7 +16,7 @@ class TaggedGameQuestGenerator:
         self.path_test_dataset = None
         self.path_data_collator = None
 
-    def set_training_args(self, path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_dataset, test_dataset, data_collator):
+    def set_training_args(self, path_outdir_trained_model, num_train_epochs, per_device_train_batch_size, per_device_eval_batch_size, eval_steps, save_steps, warmup_steps, train_dataset, test_dataset, data_collator, tokenizer):
         """
         Sets up training arguments for the model.
 
@@ -53,6 +53,8 @@ class TaggedGameQuestGenerator:
             eval_dataset=self.data_collator,
         )
 
+        self.model.resize_token_embeddings(len(tokenizer))
+
     def train(self):
         """
         Trains the model using the specified training arguments.
@@ -61,6 +63,7 @@ class TaggedGameQuestGenerator:
             raise ValueError("Please configure the training arguments using set_training_args() before calling the train method.")
         else:
             self.trainer.train()
+            self.trainer.save_model()
 
     def get_pipeline(self, path_trained_model):
         """
