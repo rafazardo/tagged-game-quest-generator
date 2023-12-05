@@ -71,12 +71,12 @@ With the required resources in place, you're equipped to define the parameters a
 If you use our TGQG model in your research, please cite:
 
 ```
-@misc { zardo_fiorio_feijo_2023,
- title={TVGQS}
- author={Zardo, Rafael; Fiorio, Pedro and dos Santos, André Luiz F.},
+@misc {zardo_fiorio_feijo_2023,
+  title={Tagged Game Quest Generator}
+  author={Zardo, Rafael; Fiorio, Pedro and dos Santos, André Luiz F.},
   year = {2023},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/rafazardo/tvgqs}}
+  howpublished = {\url{https://github.com/rafazardo/tagged-game-quest-generator}}
 }
 ```
