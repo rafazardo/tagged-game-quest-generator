@@ -26,7 +26,7 @@ pip install -r requirements.txt -U
 
 # Reproducing Results 
 
-Before conducting inferences, it's essential to download the trained model to run the pipeline. To acquire the model, simply access this link [`Trained-TGQG-Model`](). Once the model is downloaded, you can execute the following command to generate the results.
+Before conducting inferences, it's essential to download the trained model to run the pipeline. To acquire the model, simply access this link [`Trained-TGQG-Model`](https://drive.google.com/drive/folders/1eUus915kpMYiL7AfZidPHbXa8RZYd4_3?usp=drive_link). Once the model is downloaded, you can execute the following command to generate the results.
 
 ```python
 python3 inference.py
