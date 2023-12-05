@@ -73,4 +73,5 @@ class TaggedGameQuestGenerator:
         Returns:
             Pipeline for text generation.
         """
+
         return pipeline('text-generation', model = path_trained_model, tokenizer='gpt2', max_length=10000, temperature=0.5)
