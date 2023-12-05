@@ -53,8 +53,6 @@ class TaggedGameQuestGenerator:
             eval_dataset=self.data_collator,
         )
 
-        self.model.resize_token_embeddings(len(tokenizer))
-
     def train(self):
         """
         Trains the model using the specified training arguments.
