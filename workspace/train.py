@@ -19,11 +19,6 @@ def run_train(path_outdir_trained_model, num_train_epochs, per_device_train_batc
     tvgqs = TVGQS(path_indir_dataset, test_size)
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
-    tokenizer.add_special_tokens({'bos_token': '<SOS>'})
-    tokenizer.add_special_tokens({'eos_token': '<EOS>'})
-    tokenizer.add_special_tokens({'additional_special_tokens': ['<SOA>', '<EOA>']})
-    tokenizer.add_special_tokens({'additional_special_tokens': ['[CHARACTER]', '[ITEM]', '[PLACE]', '[ENEMY]', '[NUMBER]']})
-
     path_indir_train_dataset = tvgqs.build_train_txt(path_outdir_train_dataset)
     path_indir_test_dataset = tvgqs.build_test_txt(path_outdir_test_dataset)
     train_tvgqs_dataset, test_tvgqs_dataset, data_collator = tvgqs.load_dataset(path_indir_train_dataset, path_indir_test_dataset, tokenizer)
