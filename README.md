@@ -36,3 +36,47 @@ python3 inference.py
 ```
 
 The generated quest results will be stored in a .txt file within the directory specified as a parameter for path_indir_trained_model.
+
+# Training the Models
+
+You also have the option to train the model using our dataset, granting you complete freedom to experiment with new training parameters! This opportunity empowers you to delve into training the model using our dataset, providing the flexibility to explore and test various training configurations. It's an open invitation to customize and fine-tune the model according to your preferences and specific requirements. Should you need guidance or support during this training process, feel free to reach out for assistance!
+
+## Dataset Download 
+
+You can download the TVGQS Dataset using the following command: 
+
+```python
+python3 download_dataset.py
+  --path_outdir_dataset `Destination path to save the dataset`
+```
+
+This command facilitates the download of the TVGQS Dataset, ensuring easy access to the dataset for your experimentation and model training purposes.
+
+## Train the models
+
+Now that you have all the necessary resources at your disposal, it's time to set the parameters and utilize the dataset to train the model. 
+
+```python
+python3 train.py
+  --path_outdir_trained_model `Destination path to save the trained model`
+  --num_train_epochs `Number of train epochs`
+  --path_indir_dataset `Destination path to load the dataset`
+  --path_outdir_train_dataset `Destination path to save the train dataset`
+  --path_outdir_test_dataset `Destination path to save the teste dataset`
+```
+With the required resources in place, you're equipped to define the parameters and employ the dataset effectively to initiate the model training process. This step marks the beginning of an exciting journey toward training models tailored to your specific objectives and requirements. If you need any assistance in parameter selection or dataset utilization strategies, feel free to ask for guidance!
+
+# Citing this Work
+
+If you use our TGQG model in your research, please cite:
+
+```
+@misc { zardo_fiorio_feijo_2023,
+ title={TVGQS}
+ author={Zardo, Rafael; Fiorio, Pedro and dos Santos, André Luiz F.},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/rafazardo/tvgqs}}
+}
+```
