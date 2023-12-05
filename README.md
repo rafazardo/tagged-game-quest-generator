@@ -15,3 +15,24 @@ Below are a few examples of sentences generated using the trained model we've ma
 |`<SOS>`I woke late this morning and left my [ITEM] in the [PLACE] before going on duty. <SOA>Could you find my [ITEM]?<EOA> I misplaced it while I was trying to go back to my [PLACE] outpost in [PLACE]. I'll have it back when I get back.`<EOS>`|
 |`<SOS>`I am [CHARACTER] Ghastkill, mayor of [PLACE]. I need someone to descend into the mines southeast of town and break the [ENEMY] curse that has been plaguing the nearby miners for years. With your help I can cleanse the tunnels and bolster the town's economy<EOA>.`<EOS>`|
 |`<SOS>`I know things. Hidden places, dangerous beasts. All of this to my surprise, they've all been cooked by someone I've never met. I know how to cook [ITEM], but I can't bring myself to cook [ITEM] for everyone. I've never even cooked [ITEM] myself. I've never even heard of [ITEM]. There are so many different [ITEM] to choose from! I know [ITEM] can be cooked in [ITEM], but I need to know how to cook [ITEM] for everyone!`<EOS>`|
+
+# Dependencies
+
+To effortlessly install all the necessary dependencies, simply execute the following code below.
+
+```python
+pip install -r requirements.txt -U
+```
+
+# Reproducing Results 
+
+Before conducting inferences, it's essential to download the trained model to run the pipeline. To acquire the model, simply access this link [`Trained-TGQG-Model`](). Once the model is downloaded, you can execute the following command to generate the results.
+
+```python
+python3 inference.py
+  --path_outdir_sentences `Destination path to save the generated sentences`
+  --path_indir_trained_model `Destination get the trained model`
+  --num_sentences `Number of sentences to be generated`
+```
+
+The generated quest results will be stored in a .txt file within the directory specified as a parameter for path_indir_trained_model.
